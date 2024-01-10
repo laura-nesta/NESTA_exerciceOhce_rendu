@@ -15,7 +15,7 @@ describe("test palindrome", () => {
         }
     )
 
-// QUAND on saisit un palindrome ALORS celui-ci est renvoyé ET « Bien dit » est envoyé ensuite
+    // QUAND on saisit un palindrome ALORS celui-ci est renvoyé ET « Bien dit » est envoyé ensuite
     test.each(['kayak', 'radar'])(
         "QUAND on saisit un palindrome" +
         "ALORS celui-ci est renvoyé" +
@@ -39,5 +39,18 @@ describe("test palindrome", () => {
             expect(miroir).toEqual(palindrome);
         }
     )
+
+    // QUAND on saisit une chaîne ALORS « Bonjour » est envoyé avant toute réponse
+    test.each(['test', 'kayak'])(
+        "QUAND on saisit une chaîne" +
+        "ALORS 'Bonjour' est envoyé avant toute réponse",
+        (chaine: string) => {
+            let sortie = new VerifiePalindrome().Console(chaine);
+            let miroir = chaine.split('').reverse().join('');
+
+            expect(sortie).toContain("Bonjour" + os.EOL + miroir);
+        }
+    )
+
 });
 

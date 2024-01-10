@@ -14,4 +14,10 @@ export class VerifiePalindrome {
             return miroir;
         }
     }
+
+    public Console(chaine: string) : string {
+        let sortiePalindrome = this.Verifie(chaine);
+
+        return "Bonjour" + os.EOL + sortiePalindrome
+    }
 }
