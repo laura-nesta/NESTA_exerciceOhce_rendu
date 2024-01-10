@@ -27,5 +27,17 @@ describe("test palindrome", () => {
             expect(miroir).toEqual(palindrome + os.EOL + "Bien dit");
         }
     )
+
+    // QUAND on saisit un non-palindrome ALORS celui-ci est renvoyé en miroir
+    test.each(['test', 'nopalindrome'])(
+        "QUAND on saisit un non-palindrome" +
+        "ALORS celui-ci est renvoyé en miroir",
+        (chaine: string) => {
+            let miroir = new VerifiePalindrome().Verifie(chaine);
+            let palindrome = chaine.split('').reverse().join('');
+
+            expect(miroir).toEqual(palindrome);
+        }
+    )
 });
 
