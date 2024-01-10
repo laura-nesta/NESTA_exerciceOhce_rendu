@@ -52,5 +52,18 @@ describe("test palindrome", () => {
         }
     )
 
+    // QUAND on saisit une chaîne ALORS « Au revoir » est envoyé en dernier
+    test.each(['test', 'kayak'])(
+        "QUAND on saisit une chaîne" +
+        "ALORS 'Au revoir' est envoyé en dernier",
+        (chaine: string) => {
+            let sortie = new VerifiePalindrome().Console(chaine);
+            let miroir = chaine.split('').reverse().join('');
+
+            let sortieExplosed = sortie.split(os.EOL);
+            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            expect(derniereLigne).toEqual("Au revoir")
+        }
+    )
 });
 

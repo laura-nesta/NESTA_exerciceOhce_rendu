@@ -18,6 +18,6 @@ export class VerifiePalindrome {
     public Console(chaine: string) : string {
         let sortiePalindrome = this.Verifie(chaine);
 
-        return "Bonjour" + os.EOL + sortiePalindrome
+        return "Bonjour" + os.EOL + sortiePalindrome + os.EOL + "Au revoir"
     }
 }
