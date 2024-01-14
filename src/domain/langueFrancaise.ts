@@ -7,6 +7,10 @@ export class LangueFrancaise implements Langue {
         return Dictionaire.BIEN_DIT;
     }
 
+    public Salue(): string {
+        return Dictionaire.BONJOUR;
+    }
+
     public toString(): string {
         return "Langue Française";
     }

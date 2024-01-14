@@ -19,6 +19,6 @@ export class VerifiePalindrome {
     public Console(chaine: string,  langue : Langue) : string {
         let sortiePalindrome = this.Verifie(chaine, langue);
 
-        return "Bonjour" + os.EOL + sortiePalindrome + os.EOL + "Au revoir"
+        return langue.Salue() + os.EOL + sortiePalindrome + os.EOL + "Au revoir"
     }
 }

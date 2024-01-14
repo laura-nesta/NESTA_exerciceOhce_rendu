@@ -94,7 +94,7 @@ describe("test palindrome", () => {
             let sortie = new VerifiePalindrome().Console(chaine, langue);
             let miroir = chaine.split('').reverse().join('');
 
-            expect(sortie).toContain("Bonjour" + os.EOL + miroir);
+            expect(sortie).toContain(langue.Salue() + os.EOL + miroir);
         }
     )
 
