@@ -1,5 +1,8 @@
 import {VerifiePalindrome} from "../src/domain/verifiePalindrome";
 import * as os from "os";
+import {LangueFrancaise} from "../src/domain/langueFrancaise";
+import {Langue} from "../src/domain/langue";
+import {LangueAnglaise} from "../src/domain/langueAnglaise";
 
 describe("test palindrome", () => {
 
@@ -15,37 +18,80 @@ describe("test palindrome", () => {
         }
     )
 
-    // QUAND on saisit un palindrome ALORS celui-ci est renvoyé ET « Bien dit » est envoyé ensuite
-    test.each(['kayak', 'radar'])(
-        "QUAND on saisit un palindrome" +
-        "ALORS celui-ci est renvoyé" +
-        "ET 'Bien dit' est renvoyé",
-        (chaine: string) => {
-            let miroir = new VerifiePalindrome().Verifie(chaine);
-            let palindrome = chaine.split('').reverse().join('');
-
-            expect(miroir).toEqual(palindrome + os.EOL + "Bien dit");
-        }
-    )
-
     // QUAND on saisit un non-palindrome ALORS celui-ci est renvoyé en miroir
-    test.each(['test', 'nopalindrome'])(
+    test.each([
+        ['test',  "Langue Française"],
+        ['nonpalindrome',  "Langue Anglaise"]
+    ])(
         "QUAND on saisit un non-palindrome" +
         "ALORS celui-ci est renvoyé en miroir",
-        (chaine: string) => {
-            let miroir = new VerifiePalindrome().Verifie(chaine);
+        (chaine: string, langueParlee: string) => {
+            let langueFrancaise = new LangueFrancaise();
+            let langueAnglaise = new LangueAnglaise();
+
+            let langue;
+            if(langueParlee === langueAnglaise.toString()){
+                langue = langueAnglaise;
+            }else {
+                langue = langueFrancaise;
+            }
+
+            let miroir = new VerifiePalindrome().Verifie(chaine, langue);
             let palindrome = chaine.split('').reverse().join('');
 
             expect(miroir).toEqual(palindrome);
         }
     )
 
+    // QUAND on saisit un palindrome ALORS celui-ci est renvoyé ET « Bien dit » est envoyé ensuite
+    // ETANT DONNE un utilisateur parlant une langue QUAND on entre un palindrome ALORS il est renvoyé ET le <bienDit> de cette langue est envoyé
+    test.each([
+        ['kayak',  "Langue Française"],
+        ['kayak',  "Langue Anglaise"]
+    ])(
+        "QUAND on saisit un palindrome " +
+        "ALORS celui-ci est renvoyé " +
+        "ET 'Bien dit' est renvoyé dans la bonne langue",
+        ( chaine: string, langueParlee: string) => {
+            let langueFrancaise = new LangueFrancaise();
+            let langueAnglaise = new LangueAnglaise();
+
+            let langue;
+            if(langueParlee === langueAnglaise.toString()){
+                langue = langueAnglaise;
+            }else {
+                langue = langueFrancaise;
+            }
+
+            let miroir = new VerifiePalindrome().Verifie(chaine, langue);
+
+            expect(miroir).toEqual(chaine.split('').reverse().join('') + os.EOL + langue?.Valide());
+        }
+    );
+
+
+
     // QUAND on saisit une chaîne ALORS « Bonjour » est envoyé avant toute réponse
-    test.each(['test', 'kayak'])(
+    test.each([
+        ['kayak',  "Langue Française"],
+        ['kayak',  "Langue Anglaise"],
+        ['test',  "Langue Française"],
+        ['test',  "Langue Anglaise"]
+    ])(
         "QUAND on saisit une chaîne" +
         "ALORS 'Bonjour' est envoyé avant toute réponse",
-        (chaine: string) => {
-            let sortie = new VerifiePalindrome().Console(chaine);
+        (chaine: string, langueParlee: string) => {
+            let langueFrancaise = new LangueFrancaise();
+            let langueAnglaise = new LangueAnglaise();
+
+            let langue;
+            if(langueParlee === langueAnglaise.toString()){
+                langue = langueAnglaise;
+            }else {
+                langue = langueFrancaise;
+            }
+
+            let sortie = new VerifiePalindrome().Console(chaine, langue);
             let miroir = chaine.split('').reverse().join('');
 
             expect(sortie).toContain("Bonjour" + os.EOL + miroir);
@@ -53,11 +99,26 @@ describe("test palindrome", () => {
     )
 
     // QUAND on saisit une chaîne ALORS « Au revoir » est envoyé en dernier
-    test.each(['test', 'kayak'])(
+    test.each([
+        ['kayak',  "Langue Française"],
+        ['kayak',  "Langue Anglaise"],
+        ['test',  "Langue Française"],
+        ['test',  "Langue Anglaise"]
+    ])(
         "QUAND on saisit une chaîne" +
         "ALORS 'Au revoir' est envoyé en dernier",
-        (chaine: string) => {
-            let sortie = new VerifiePalindrome().Console(chaine);
+        (chaine: string, langueParlee: string) => {
+            let langueFrancaise = new LangueFrancaise();
+            let langueAnglaise = new LangueAnglaise();
+
+            let langue;
+            if(langueParlee === langueAnglaise.toString()){
+                langue = langueAnglaise;
+            }else {
+                langue = langueFrancaise;
+            }
+
+            let sortie = new VerifiePalindrome().Console(chaine, langue);
             let miroir = chaine.split('').reverse().join('');
 
             let sortieExplosed = sortie.split(os.EOL);
