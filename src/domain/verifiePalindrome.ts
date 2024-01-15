@@ -1,5 +1,6 @@
 import * as os from "os";
 import {Langue} from "./langue";
+import {MomentJournee} from "./momentJournee";
 
 export class VerifiePalindrome {
 
@@ -16,9 +17,9 @@ export class VerifiePalindrome {
         }
     }
 
-    public Console(chaine: string,  langue : Langue) : string {
+    public Console(chaine: string,  langue : Langue, moment : MomentJournee) : string {
         let sortiePalindrome = this.Verifie(chaine, langue);
 
-        return langue.Salue() + os.EOL + sortiePalindrome + os.EOL + "Au revoir"
+        return langue.Salue(moment) + os.EOL + sortiePalindrome + os.EOL + langue.Cloture()
     }
 }
