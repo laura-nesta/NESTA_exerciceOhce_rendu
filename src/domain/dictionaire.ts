@@ -3,6 +3,10 @@ export class Dictionaire {
     public static readonly AU_REVOIR = "Au Revoir";
     public static readonly BIEN_DIT = "Bien dit !";
     public static readonly BONSOIR= "Bonsoir";
+    public static readonly BONNE_JOURNEE= "Bonne journée";
+    public static readonly BONNE_SOIREE= "Bonne soirée";
+    public static readonly BONNE_NUIT= "Bonne nuit";
+
 
     public static readonly HELLO = "Hello";
     public static readonly GOODBYE = "Goodbye";

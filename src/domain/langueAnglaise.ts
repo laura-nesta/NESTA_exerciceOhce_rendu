@@ -28,8 +28,15 @@ export class LangueAnglaise implements Langue {
         }
     }
 
-    public Cloture(): string {
-        return Dictionaire.GOODBYE;
+    public Cloture(momentJournee: MomentJournee): string {
+        switch(momentJournee){
+            case MomentJournee.Nuit:
+                return Dictionaire.GOOD_NIGHT;
+                break;
+            default:
+                return Dictionaire.GOODBYE;
+                break;
+        }
     }
 
     public toString(): string {

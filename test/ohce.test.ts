@@ -24,7 +24,7 @@ describe("test palindrome", () => {
 
     const buildConsoleOutput = (chaine: string, langue: Langue, momentJournee: string): string => {
         const miroir = chaine.split('').reverse().join('');
-        return `${langue.Salue(buildMoment(momentJournee))}${os.EOL}${miroir}${os.EOL}${langue.Cloture()}`;
+        return `${langue.Salue(buildMoment(momentJournee))}${os.EOL}${miroir}${os.EOL}${langue.Cloture(buildMoment(momentJournee))}`;
     };
 
     const buildVerifieOutput = (chaine: string): string => {
@@ -64,6 +64,7 @@ describe("test palindrome", () => {
         ['kayak',  "Langue Française"],
         ['kayak',  "Langue Anglaise"]
     ])(
+        "ETANT DONNE un utilisateur parlant une langue" +
         "QUAND on saisit un palindrome " +
         "ALORS celui-ci est renvoyé " +
         "ET 'Bien dit' est renvoyé dans la bonne langue",
@@ -84,6 +85,7 @@ describe("test palindrome", () => {
         ['test',  "Langue Française", "Nuit"],
         ['test',  "Langue Anglaise", "Matin"]
     ])(
+        "ETANT DONNE un utilisateur parlant une langue" +
         "QUAND on saisit une chaîne" +
         "ET un moment donné de la journée" +
         "ALORS 'Bonjour' est envoyé avant toute réponse",
@@ -104,6 +106,8 @@ describe("test palindrome", () => {
         ['kayak',  "Langue Anglaise", "Après-midi"],
         ['kayak',  "Langue Anglaise", "Soirée"],
     ])(
+        "ETANT DONNE un utilisateur parlant une langue" +
+        "ET un moment donné de la journée" +
         "QUAND on saisit une chaîne" +
         "ALORS 'Au revoir' est envoyé en dernier",
         (chaine: string, langueParlee: string, moment: string) => {
@@ -111,7 +115,7 @@ describe("test palindrome", () => {
 
             let sortieExplosed = sortie.split(os.EOL);
             let derniereLigne = sortieExplosed[sortieExplosed.length-1]
-            expect(derniereLigne).toEqual(buildLangue(langueParlee).Cloture())
+            expect(derniereLigne).toEqual(buildLangue(langueParlee).Cloture(buildMoment(moment)))
         }
     )
 });

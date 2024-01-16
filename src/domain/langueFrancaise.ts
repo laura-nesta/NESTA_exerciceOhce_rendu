@@ -22,8 +22,24 @@ export class LangueFrancaise implements Langue {
         }
     }
 
-    public Cloture(): string {
-        return Dictionaire.AU_REVOIR;
+    public Cloture(momentJournee: MomentJournee): string {
+        switch(momentJournee) {
+            case MomentJournee.Matin:
+                return Dictionaire.BONNE_JOURNEE;
+                break;
+            case MomentJournee.ApresMidi:
+                return Dictionaire.BONNE_JOURNEE;
+                break;
+            case MomentJournee.Soiree:
+                return Dictionaire.BONNE_SOIREE;
+                break;
+            case MomentJournee.Nuit:
+                return Dictionaire.BONNE_NUIT;
+                break;
+            default:
+                return Dictionaire.AU_REVOIR;
+                break;
+        }
     }
 
     public toString(): string {

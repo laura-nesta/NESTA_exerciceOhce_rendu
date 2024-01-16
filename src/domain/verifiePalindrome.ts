@@ -20,6 +20,6 @@ export class VerifiePalindrome {
     public Console(chaine: string,  langue : Langue, moment : MomentJournee) : string {
         let sortiePalindrome = this.Verifie(chaine, langue);
 
-        return langue.Salue(moment) + os.EOL + sortiePalindrome + os.EOL + langue.Cloture()
+        return langue.Salue(moment) + os.EOL + sortiePalindrome + os.EOL + langue.Cloture(moment)
     }
 }
