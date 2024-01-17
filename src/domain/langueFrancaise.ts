@@ -12,13 +12,10 @@ export class LangueFrancaise implements Langue {
         switch(momentJournee){
             case MomentJournee.Soiree:
                 return Dictionaire.BONSOIR;
-                break;
             case MomentJournee.Nuit:
                 return Dictionaire.BONSOIR;
-                break;
             default:
                 return Dictionaire.BONJOUR;
-                break;
         }
     }
 
@@ -26,19 +23,14 @@ export class LangueFrancaise implements Langue {
         switch(momentJournee) {
             case MomentJournee.Matin:
                 return Dictionaire.BONNE_JOURNEE;
-                break;
             case MomentJournee.ApresMidi:
                 return Dictionaire.BONNE_JOURNEE;
-                break;
             case MomentJournee.Soiree:
                 return Dictionaire.BONNE_SOIREE;
-                break;
             case MomentJournee.Nuit:
                 return Dictionaire.BONNE_NUIT;
-                break;
             default:
                 return Dictionaire.AU_REVOIR;
-                break;
         }
     }
 

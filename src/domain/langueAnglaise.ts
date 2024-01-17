@@ -12,19 +12,14 @@ export class LangueAnglaise implements Langue {
         switch(momentJournee){
             case MomentJournee.Matin:
                 return Dictionaire.GOOD_MORNING;
-                break;
             case MomentJournee.ApresMidi:
                 return Dictionaire.GOOD_AFTERNOON;
-                break;
             case MomentJournee.Soiree:
                 return Dictionaire.GOOD_EVENING;
-                break;
             case MomentJournee.Nuit:
                 return Dictionaire.GOOD_NIGHT;
-                break;
             default:
                 return Dictionaire.HELLO;
-                break;
         }
     }
 
@@ -32,10 +27,8 @@ export class LangueAnglaise implements Langue {
         switch(momentJournee){
             case MomentJournee.Nuit:
                 return Dictionaire.GOOD_NIGHT;
-                break;
             default:
                 return Dictionaire.GOODBYE;
-                break;
         }
     }
 

@@ -6,5 +6,4 @@ export interface Langue {
     Salue(momentJournee : MomentJournee): string;
 
     Cloture(momentJournee: MomentJournee): string;
-
 }

@@ -4,6 +4,7 @@ import {LangueFrancaise} from "../src/domain/langueFrancaise";
 import {Langue} from "../src/domain/langue";
 import {LangueAnglaise} from "../src/domain/langueAnglaise";
 import {MomentJournee} from "../src/domain/momentJournee";
+import getRealSystemTime = jest.getRealSystemTime;
 
 describe("test palindrome", () => {
 
@@ -17,6 +18,12 @@ describe("test palindrome", () => {
     const buildMoment = (momentJournee: string) : MomentJournee => {
         return MomentJournee.buildMoment(momentJournee);
     }
+
+    const buildMomentSystem = () : MomentJournee =>{
+        const moment = MomentJournee.getMomentActuel()
+        return MomentJournee.getMomentActuel();
+    }
+
 
     const buildTestInput = (chaine: string, langueParlee: string): [string, Langue] => {
         return [chaine, buildLangue(langueParlee)];
@@ -97,6 +104,24 @@ describe("test palindrome", () => {
         }
     )
 
+    test.each([
+        ['kayak',  "Langue Française"],
+        ['kayak',  "Langue Anglaise"],
+        ['test',  "Langue Française"],
+        ['test',  "Langue Anglaise"]
+    ])(
+        "ETANT DONNE un utilisateur parlant une langue" +
+        "QUAND on saisit une chaîne" +
+        "ET selon le moment de la journée du systeme" +
+        "ALORS 'Bonjour' est envoyé avant toute réponse",
+        (chaine: string, langueParlee: string) => {
+
+            let sortie = new VerifiePalindrome().Console(chaine, buildLangue(langueParlee), buildMomentSystem());
+
+            expect(sortie).toContain(buildLangue(langueParlee).Salue(buildMomentSystem()) + os.EOL + buildVerifieOutput(chaine));
+        }
+    )
+
     // QUAND on saisit une chaîne ALORS « Au revoir » est envoyé en dernier
     test.each([
         ['kayak',  "Langue Française", "Inconu"],
@@ -116,6 +141,26 @@ describe("test palindrome", () => {
             let sortieExplosed = sortie.split(os.EOL);
             let derniereLigne = sortieExplosed[sortieExplosed.length-1]
             expect(derniereLigne).toEqual(buildLangue(langueParlee).Cloture(buildMoment(moment)))
+        }
+    )
+
+    test.each([
+        ['kayak',  "Langue Française"],
+        ['kayak',  "Langue Anglaise"],
+        ['test',  "Langue Française"],
+        ['test',  "Langue Anglaise"],
+        ['kayak',  "Langue Anglaise"],
+        ['kayak',  "Langue Anglaise"],
+    ])(
+        "ETANT DONNE un utilisateur parlant une langue" +
+        "ET selon le moent de la journée du systeme" +
+        "QUAND on saisit une chaîne" +
+        "ALORS 'Au revoir' est envoyé en dernier",
+        (chaine: string, langueParlee: string) => {
+            let sortie = new VerifiePalindrome().Console(chaine, buildLangue(langueParlee), buildMomentSystem());
+            let sortieExplosed = sortie.split(os.EOL);
+            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            expect(derniereLigne).toEqual(buildLangue(langueParlee).Cloture(buildMomentSystem()))
         }
     )
 });
