@@ -38,8 +38,8 @@ export class VerifiePalindrome {
         }
     }
 
-    public Console(chaine: string,  langue : Langue, moment : MomentJournee) : string {
+    public Console(chaine: string) : string {
         let sortiePalindrome = this.Verifie(chaine);
-        return langue.Salue(moment) + os.EOL + sortiePalindrome + os.EOL + langue.Cloture(moment)
+        return this.langue.Salue(this.moment) + os.EOL + sortiePalindrome + os.EOL + this.langue.Cloture(this.moment)
     }
 }
