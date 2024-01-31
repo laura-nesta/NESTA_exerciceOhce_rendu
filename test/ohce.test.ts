@@ -4,7 +4,10 @@ import {LangueFrancaise} from "../src/domain/langueFrancaise";
 import {Langue} from "../src/domain/langue";
 import {LangueAnglaise} from "../src/domain/langueAnglaise";
 import {MomentJournee} from "../src/domain/momentJournee";
-import getRealSystemTime = jest.getRealSystemTime;
+import {data,
+    casesPalindromeLangue,
+    casesChaineLangueMoment,
+    casesChaineLangue} from "./utils/testData"
 
 describe("test palindrome", () => {
 
@@ -51,7 +54,7 @@ describe("test palindrome", () => {
     };
 
     // QUAND on saisit une chaîne ALORS celle-ci est renvoyée en miroir
-    test.each(['kayak', 'nopalindrome'])(
+    test.each([...data.nonPalindrome, ...data.palindrome])(
         "QUAND on saisit un non palindrome" +
         "ALORS elle est renvoyée en miroir",
         (chaine: string)=>{
@@ -63,10 +66,7 @@ describe("test palindrome", () => {
     )
 
     // QUAND on saisit un non-palindrome ALORS celui-ci est renvoyé en miroir
-    test.each([
-        ['test'],
-        ['nonpalindrome']
-    ])(
+    test.each([...data.nonPalindrome])(
         "QUAND on saisit un non-palindrome" +
         "ALORS celui-ci est renvoyé en miroir",
         (chaine: string) => {
@@ -79,10 +79,7 @@ describe("test palindrome", () => {
 
     // QUAND on saisit un palindrome ALORS celui-ci est renvoyé ET « Bien dit » est envoyé ensuite
     // ETANT DONNE un utilisateur parlant une langue QUAND on entre un palindrome ALORS il est renvoyé ET le <bienDit> de cette langue est envoyé
-    test.each([
-        ['kayak',  "Langue Française"],
-        ['kayak',  "Langue Anglaise"]
-    ])(
+    test.each([...casesPalindromeLangue])(
         "ETANT DONNE un utilisateur parlant une langue" +
         "QUAND on saisit un palindrome " +
         "ALORS celui-ci est renvoyé " +
@@ -100,12 +97,7 @@ describe("test palindrome", () => {
 
 
     // QUAND on saisit une chaîne ALORS « Bonjour » est envoyé avant toute réponse
-    test.each([
-        ['kayak',  "Langue Française", "Inconu"],
-        ['kayak',  "Langue Anglaise", "Inconu"],
-        ['test',  "Langue Française", "Nuit"],
-        ['test',  "Langue Anglaise", "Matin"]
-    ])(
+    test.each([... casesChaineLangueMoment])(
         "ETANT DONNE un utilisateur parlant une langue" +
         "QUAND on saisit une chaîne" +
         "ET un moment donné de la journée" +
@@ -121,12 +113,7 @@ describe("test palindrome", () => {
         }
     )
 
-    test.each([
-        ['kayak',  "Langue Française"],
-        ['kayak',  "Langue Anglaise"],
-        ['test',  "Langue Française"],
-        ['test',  "Langue Anglaise"]
-    ])(
+    test.each([... casesChaineLangue])(
         "ETANT DONNE un utilisateur parlant une langue" +
         "QUAND on saisit une chaîne" +
         "ET selon le moment de la journée du systeme" +
@@ -142,14 +129,7 @@ describe("test palindrome", () => {
     )
 
     // QUAND on saisit une chaîne ALORS « Au revoir » est envoyé en dernier
-    test.each([
-        ['kayak',  "Langue Française", "Inconu"],
-        ['kayak',  "Langue Anglaise", "Inconu"],
-        ['test',  "Langue Française", "Nuit"],
-        ['test',  "Langue Anglaise", "Matin"],
-        ['kayak',  "Langue Anglaise", "Après-midi"],
-        ['kayak',  "Langue Anglaise", "Soirée"],
-    ])(
+    test.each([... casesChaineLangueMoment])(
         "ETANT DONNE un utilisateur parlant une langue" +
         "ET un moment donné de la journée" +
         "QUAND on saisit une chaîne" +
@@ -166,14 +146,7 @@ describe("test palindrome", () => {
         }
     )
 
-    test.each([
-        ['kayak',  "Langue Française"],
-        ['kayak',  "Langue Anglaise"],
-        ['test',  "Langue Française"],
-        ['test',  "Langue Anglaise"],
-        ['kayak',  "Langue Anglaise"],
-        ['kayak',  "Langue Anglaise"],
-    ])(
+    test.each([... casesChaineLangue])(
         "ETANT DONNE un utilisateur parlant une langue" +
         "ET selon le moment de la journée du systeme" +
         "QUAND on saisit une chaîne" +
