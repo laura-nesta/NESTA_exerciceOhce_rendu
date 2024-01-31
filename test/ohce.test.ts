@@ -11,7 +11,6 @@ describe("test palindrome", () => {
     const buildLangue = (langueParlee: string): Langue => {
         const langueFrancaise = new LangueFrancaise();
         const langueAnglaise = new LangueAnglaise();
-
         return langueParlee === langueAnglaise.toString() ? langueAnglaise : langueFrancaise;
     };
 
@@ -52,13 +51,13 @@ describe("test palindrome", () => {
 
     // QUAND on saisit un non-palindrome ALORS celui-ci est renvoyé en miroir
     test.each([
-        ['test',  "Langue Française"],
-        ['nonpalindrome',  "Langue Anglaise"]
+        ['test'],
+        ['nonpalindrome']
     ])(
         "QUAND on saisit un non-palindrome" +
         "ALORS celui-ci est renvoyé en miroir",
-        (chaine: string, langueParlee: string) => {
-            let miroir = new VerifiePalindrome().Verifie(chaine, buildLangue(langueParlee));
+        (chaine: string) => {
+            let miroir = new VerifiePalindrome().Verifie(chaine);
             let palindrome =  buildVerifieOutput(chaine);
 
             expect(miroir).toEqual(palindrome);
@@ -76,7 +75,9 @@ describe("test palindrome", () => {
         "ALORS celui-ci est renvoyé " +
         "ET 'Bien dit' est renvoyé dans la bonne langue",
         ( chaine: string, langueParlee: string) => {
-            let miroir = new VerifiePalindrome().Verifie(chaine, buildLangue(langueParlee));
+            let verifiePalindrome = new VerifiePalindrome();
+            verifiePalindrome.setLangue(langueParlee);
+            let miroir = verifiePalindrome.Verifie(chaine);
             let palindrome = buildVerifieOutput(chaine);
 
             expect(miroir).toEqual(palindrome + os.EOL + buildLangue(langueParlee)?.Valide());
