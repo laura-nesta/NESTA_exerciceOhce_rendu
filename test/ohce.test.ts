@@ -8,6 +8,7 @@ import {data,
     casesPalindromeLangue,
     casesChaineLangueMoment,
     casesChaineLangue} from "./utils/testData"
+import {buildTest} from "./utils/VerifiePalindromeBuilder";
 
 describe("test palindrome", () => {
 
@@ -55,7 +56,7 @@ describe("test palindrome", () => {
 
     // QUAND on saisit une chaîne ALORS celle-ci est renvoyée en miroir
     test.each([...data.nonPalindrome, ...data.palindrome])(
-        "QUAND on saisit un non palindrome" +
+        "QUAND on saisit une chaine" +
         "ALORS elle est renvoyée en miroir",
         (chaine: string)=>{
             let miroir = new VerifiePalindrome().Miroir(chaine);
