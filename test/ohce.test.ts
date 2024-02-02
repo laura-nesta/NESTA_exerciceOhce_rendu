@@ -96,5 +96,29 @@ describe("test palindrome", () => {
             expect(derniereLigne).toEqual(sortieBuilder.AvecMomentActuel().AvecLangue(langueParlee).BuildCloture())
         }
     )
+
+    const casesSalutation = [
+        ['Langue Française', 'Matin'],
+        ['Langue Française', 'Après-midi'],
+        ['Langue Française', 'Soirée'],
+        ['Langue Française', 'Nuit'],
+        ['Langue Anglaise', 'Matin'],
+        ['Langue Anglaise', 'Après-midi'],
+        ['Langue Anglaise', 'Soirée'],
+        ['Langue Anglaise', 'Nuit'],
+    ]
+    test.each([... casesSalutation])(
+        "ETANT DONNE un utilisateur parlant une langue" +
+        "ET que la période de la journée est <période> " +
+        "QUAND on saisit une chaîne" +
+        "ALORS <salutation> de cette langue à cette période est envoyé avant tout",
+        (chaine: string, langueParlee: string) => {
+            let sortie = testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)
+            let sortieExplosed = sortie.split(os.EOL);
+            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            expect(derniereLigne).toEqual(sortieBuilder.AvecMomentActuel().AvecLangue(langueParlee).BuildCloture())
+        }
+    )
+
 });
 
