@@ -20,6 +20,7 @@
   "dependencies": {
     "navigator": "^1.0.1",
     "os-locale": "^6.0.2",
+    "readline-sync": "^1.4.10",
     "typescript": "^5.3.3"
   }
 }

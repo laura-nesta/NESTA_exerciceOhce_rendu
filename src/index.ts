@@ -1,4 +1,5 @@
 import {MomentJournee} from "./domain/momentJournee";
+import {VerifiePalindrome} from "./domain/verifiePalindrome";
 
 
 function main(){
@@ -7,6 +8,13 @@ function main(){
 
     const langueSysteme = DonneLangueSysteme()
     console.log("Langage du systeme : " + langueSysteme);
+
+    const userInput = lireConsole();
+
+    const verifiePalindrome = new VerifiePalindrome();
+    const sortie = verifiePalindrome.Console(userInput);
+
+    console.log(sortie);
 
 }
 
@@ -20,6 +28,11 @@ function DonneLangueSysteme() {
     // const langueSysteme = navigator?.language  || 'Langue Française';
     const langueSysteme =  'Langue Française';
     return langueSysteme;
+}
+
+function lireConsole(): string {
+    const readline = require('readline-sync');
+    return readline.question('Entrez une chaine : ');
 }
 
 main();
