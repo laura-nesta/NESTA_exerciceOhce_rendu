@@ -49,6 +49,6 @@ export class VerifiePalindrome {
     // Fonction qui prend un mot en entrée, Salue l'utilisateur, Verfie si c'est un palindrome puis dit au revoir
     public Console(chaine: string) : string {
         let sortiePalindrome = this.Verifie(chaine);
-        return this.langue.Salue(this.moment) + os.EOL + sortiePalindrome + os.EOL + this.langue.Cloture(this.moment)
+        return this.langue.Salue(this.moment) + os.EOL + sortiePalindrome + os.EOL + this.langue.Cloture(this.moment) + os.EOL
     }
 }

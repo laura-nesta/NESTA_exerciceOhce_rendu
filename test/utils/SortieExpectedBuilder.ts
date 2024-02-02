@@ -29,6 +29,7 @@ export class buildTestSortieExpected {
             + this. VerifiePalindrome(chaine)
             + os.EOL
             + this.langue.Cloture(this.moment)
+            + os.EOL
     }
 
     public AvecLangue (langueParlee: string) : buildTestSortieExpected {

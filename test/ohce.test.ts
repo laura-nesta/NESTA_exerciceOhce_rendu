@@ -11,11 +11,13 @@ import {data,
     chaine} from "./utils/testData"
 import {buildTest} from "./utils/VerifiePalindromeBuilder";
 import {buildTestSortieExpected} from "./utils/SortieExpectedBuilder";
+import {StringFilter} from "./utils/stringFilter";
 
 describe("test palindrome", () => {
 
     const sortieBuilder = new buildTestSortieExpected();
     const testBuilder : buildTest = new buildTest();
+    const stringFilter: StringFilter = new StringFilter();
 
 
     // QUAND on saisit une chaîne ALORS celle-ci est renvoyée en miroir
@@ -79,8 +81,7 @@ describe("test palindrome", () => {
         "ALORS 'Au revoir' est envoyé en dernier",
         (chaine: string, langueParlee: string, moment: string) => {
             let sortie = testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine);
-            let sortieExplosed = sortie.split(os.EOL);
-            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            let derniereLigne = stringFilter.DerniereLigne(sortie)
             expect(derniereLigne).toEqual(sortieBuilder.AvecMoment(moment).AvecLangue(langueParlee).BuildCloture())
         }
     )
