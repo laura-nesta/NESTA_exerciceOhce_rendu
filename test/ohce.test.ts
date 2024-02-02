@@ -137,7 +137,10 @@ describe("test palindrome", () => {
         "QUAND on saisit une chaîne" +
         "ALORS <auRevoir> de cette langue à cette période est envoyé avant tout",
         (langueParlee: string, moment:string) => {
-            expect(testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0])).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0]));
+            let sortie = testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0])
+            let sortieExplosed = sortie.split(os.EOL);
+            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            expect(derniereLigne).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).BuildCloture());
         }
     )
 
