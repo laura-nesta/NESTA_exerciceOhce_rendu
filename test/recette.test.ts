@@ -17,7 +17,7 @@ describe("Test de recette du 02/02/2024", () => {
         expect(resultat).toContain(Dictionaire.GOOD_EVENING + os.EOL + "kayak" + os.EOL + Dictionaire.WELL_SAID + os.EOL + Dictionaire.GOODBYE + os.EOL);
     });
 
-    // Palindrome, anglais, soir.
+    // Non-palindrome, français, matin.
     test("QUAND on saisit un non-palindrome " +
         "ET l'utilisateur parle francais " +
         "ET que l'on est le Matin " +
@@ -27,6 +27,18 @@ describe("Test de recette du 02/02/2024", () => {
 
         let resultat = new buildTest().AvecLangue('Langue Française').AvecMoment('Matin').Console('test')
         expect(resultat).toContain(Dictionaire.BONJOUR + os.EOL + "tset" + os.EOL + Dictionaire.BONNE_JOURNEE + os.EOL);
+    });
+
+    // Palindrome, inconnue, nuit.
+    test("QUAND on saisit un palindrome " +
+        "ET que l'on est la nuit " +
+        "ALORS 'Bonsoir' est envoyer"+
+        "ET le palindrome est renvoyé " +
+        "ET 'Bien dit !' est envoyé "+
+        "ET ensuite'bonne nuit'", () => {
+
+        let resultat = new buildTest().AvecMoment('Nuit').Console('kayak')
+        expect(resultat).toContain(Dictionaire.BONSOIR + os.EOL + "kayak" + os.EOL + Dictionaire.BIEN_DIT + os.EOL + Dictionaire.BONNE_NUIT + os.EOL);
     });
 
 
