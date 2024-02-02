@@ -9,6 +9,7 @@ import {data,
     casesChaineLangueMoment,
     casesChaineLangue} from "./utils/testData"
 import {buildTest} from "./utils/VerifiePalindromeBuilder";
+import {buildTestSortieExpected} from "./utils/SortieExpectedBuilder";
 
 describe("test palindrome", () => {
 
