@@ -13,9 +13,14 @@ export class buildTestSortieExpected {
     }
 
     public VerifiePalindrome(chaine: string) :string {
-        return this.Miroir(chaine)
-            + os.EOL
-            + this.langue.Valide()
+        if(this.Miroir(chaine) == chaine){
+            return this.Miroir(chaine)
+                + os.EOL
+                + this.langue.Valide()
+        } else {
+            return this.Miroir(chaine)
+        }
+
     }
 
     public Console(chaine:string) : string {
@@ -26,7 +31,7 @@ export class buildTestSortieExpected {
             + this.langue.Cloture(this.moment)
     }
 
-    public AvecLangue (langueParlee: string) {
+    public AvecLangue (langueParlee: string) : buildTestSortieExpected {
         const langueFrancaise = new LangueFrancaise();
         const langueAnglaise = new LangueAnglaise();
         if(langueParlee === langueAnglaise.toString()){
@@ -34,13 +39,15 @@ export class buildTestSortieExpected {
         } else {
             this.langue = langueFrancaise;
         }
+        return this;
     };
 
-    public AvecMoment (momentJournee: string) {
+    public AvecMoment (momentJournee: string) : buildTestSortieExpected {
         this.moment = MomentJournee.buildMoment(momentJournee);
+        return this;
     }
 
-    public AvecMomentActuel () {
+    public AvecMomentActuel () : buildTestSortieExpected {
         const heureActuelle = new Date().getHours();
         if (heureActuelle < 12 && heureActuelle > 7) {
             this.moment = MomentJournee.Matin;
@@ -51,6 +58,11 @@ export class buildTestSortieExpected {
         } else {
             this.moment = MomentJournee.Nuit;
         }
+        return this;
+    }
+
+    public BuildCloture () : string {
+        return this.langue.Cloture(this.moment);
     }
 
 }
