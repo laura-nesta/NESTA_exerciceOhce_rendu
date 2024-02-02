@@ -44,7 +44,23 @@ export class buildTestSortieExpected {
     };
 
     public AvecMoment (momentJournee: string) : buildTestSortieExpected {
-        this.moment = MomentJournee.buildMoment(momentJournee);
+        switch (momentJournee) {
+            case 'Matin':
+                this.moment = MomentJournee.Matin;
+                break;
+            case 'Après-midi':
+                this.moment = MomentJournee.ApresMidi;
+                break;
+            case 'Soirée':
+                this.moment = MomentJournee.Soiree;
+                break;
+            case 'Nuit':
+                this.moment = MomentJournee.Nuit;
+                break;
+            default:
+                this.moment = MomentJournee.Inconnu;
+                break;
+        }
         return this;
     }
 
