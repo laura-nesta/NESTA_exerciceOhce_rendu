@@ -15,55 +15,13 @@ describe("test palindrome", () => {
 
     const sortieBuilder = new buildTestSortieExpected();
     const testBuilder : buildTest = new buildTest();
-    const buildLangue = (langueParlee: string): Langue => {
-        const langueFrancaise = new LangueFrancaise();
-        const langueAnglaise = new LangueAnglaise();
-        return langueParlee === langueAnglaise.toString() ? langueAnglaise : langueFrancaise;
-    };
 
-    const buildMoment = (momentJournee: string) : MomentJournee => {
-        return MomentJournee.buildMoment(momentJournee);
-    }
-
-    const buildMomentActuel = () : MomentJournee => {
-        const heureActuelle = new Date().getHours();
-        if (heureActuelle < 12 && heureActuelle > 7) {
-            return MomentJournee.Matin;
-        } else if (heureActuelle < 17) {
-            return MomentJournee.ApresMidi;
-        } else if (heureActuelle < 21) {
-            return MomentJournee.Soiree;
-        } else {
-            return MomentJournee.Nuit;
-        }
-    }
-
-    const buildMomentSystem = () : MomentJournee =>{
-        const moment = MomentJournee.getMomentActuel()
-        return MomentJournee.getMomentActuel();
-    }
-
-    const buildTestInput = (chaine: string, langueParlee: string): [string, Langue] => {
-        return [chaine, buildLangue(langueParlee)];
-    };
-
-    const buildConsoleOutput = (chaine: string, langue: Langue, momentJournee: string): string => {
-        const miroir = chaine.split('').reverse().join('');
-        return `${langue.Salue(buildMoment(momentJournee))}${os.EOL}${miroir}${os.EOL}${langue.Cloture(buildMoment(momentJournee))}`;
-    };
-
-    const buildVerifieOutput = (chaine: string): string => {
-        return chaine.split('').reverse().join('');
-    };
 
     // QUAND on saisit une chaîne ALORS celle-ci est renvoyée en miroir
     test.each([...data.nonPalindrome, ...data.palindrome])(
         "QUAND on saisit une chaine" +
         "ALORS elle est renvoyée en miroir",
         (chaine: string)=>{
-            let miroir = new VerifiePalindrome().Miroir(chaine);
-            let palindrome = buildVerifieOutput(chaine);
-
             expect(testBuilder.Miroir(chaine)).toEqual(sortieBuilder.Miroir(chaine));
         }
     )
@@ -73,9 +31,6 @@ describe("test palindrome", () => {
         "QUAND on saisit un non-palindrome" +
         "ALORS celui-ci est renvoyé en miroir",
         (chaine: string) => {
-            let miroir = new VerifiePalindrome().Verifie(chaine);
-            let palindrome =  buildVerifieOutput(chaine);
-
             expect(testBuilder.Miroir(chaine)).toEqual(sortieBuilder.Miroir(chaine));
         }
     )
@@ -88,10 +43,6 @@ describe("test palindrome", () => {
         "ALORS celui-ci est renvoyé " +
         "ET 'Bien dit' est renvoyé dans la bonne langue",
         ( chaine: string, langueParlee: string) => {
-            let verifiePalindrome = new VerifiePalindrome();
-            verifiePalindrome.setLangue(langueParlee);
-            let miroir = verifiePalindrome.Verifie(chaine);
-
             expect(testBuilder.AvecLangue(langueParlee).Verifie(chaine)).toEqual(sortieBuilder.AvecLangue(langueParlee).VerifiePalindrome(chaine));
         }
     );
@@ -105,12 +56,6 @@ describe("test palindrome", () => {
         "ET un moment donné de la journée" +
         "ALORS 'Bonjour' est envoyé avant toute réponse",
         (chaine: string, langueParlee: string, moment:string) => {
-
-            let verifiePalindrome = new VerifiePalindrome();
-            verifiePalindrome.setMoment(buildMoment(moment));
-            verifiePalindrome.setLangue(langueParlee);
-            let sortie = verifiePalindrome.Console(chaine);
-
             expect(testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine)).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine));
         }
     )
@@ -121,11 +66,6 @@ describe("test palindrome", () => {
         "ET selon le moment de la journée du systeme" +
         "ALORS 'Bonjour' est envoyé avant toute réponse",
         (chaine: string, langueParlee: string) => {
-            let verifiePalindrome = new VerifiePalindrome();
-            verifiePalindrome.setMoment(buildMomentActuel());
-            verifiePalindrome.setLangue(langueParlee);
-            let sortie = verifiePalindrome.Console(chaine);
-
             expect(testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine));
         }
     )
@@ -137,11 +77,6 @@ describe("test palindrome", () => {
         "QUAND on saisit une chaîne" +
         "ALORS 'Au revoir' est envoyé en dernier",
         (chaine: string, langueParlee: string, moment: string) => {
-            let verifiePalindrome = new VerifiePalindrome();
-            verifiePalindrome.setMoment(buildMoment(moment));
-            verifiePalindrome.setLangue(langueParlee);
-            //let sortie = verifiePalindrome.Console(chaine);
-
             let sortie = testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine);
             let sortieExplosed = sortie.split(os.EOL);
             let derniereLigne = sortieExplosed[sortieExplosed.length-1]
@@ -155,9 +90,6 @@ describe("test palindrome", () => {
         "QUAND on saisit une chaîne" +
         "ALORS 'Au revoir' est envoyé en dernier",
         (chaine: string, langueParlee: string) => {
-            let verifiePalindrome = new VerifiePalindrome();
-            verifiePalindrome.setMoment(buildMomentActuel());
-            verifiePalindrome.setLangue(langueParlee);
             let sortie = testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)
             let sortieExplosed = sortie.split(os.EOL);
             let derniereLigne = sortieExplosed[sortieExplosed.length-1]
