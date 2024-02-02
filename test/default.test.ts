@@ -6,7 +6,7 @@ describe("Debug au 31/01/2024", () => {
         ['test', 'radar']
     ])("check de saut de ligne en dernier caractère de la sortie",
         (chaine: string) => {
-            let resultat = new buildTest().Verifie(chaine);
-            expect(resultat.endsWith(os.EOL)).toBe(false);
+            let resultat = new buildTest().Console(chaine);
+            expect(resultat.endsWith(os.EOL)).toBe(true);
         });
 })

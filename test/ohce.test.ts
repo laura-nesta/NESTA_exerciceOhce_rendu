@@ -93,8 +93,7 @@ describe("test palindrome", () => {
         "ALORS 'Au revoir' est envoyé en dernier",
         (chaine: string, langueParlee: string) => {
             let sortie = testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)
-            let sortieExplosed = sortie.split(os.EOL);
-            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            let derniereLigne = stringFilter.DerniereLigne(sortie)
             expect(derniereLigne).toEqual(sortieBuilder.AvecMomentActuel().AvecLangue(langueParlee).BuildCloture())
         }
     )
@@ -116,8 +115,7 @@ describe("test palindrome", () => {
         "ALORS <salutation> de cette langue à cette période est envoyé avant tout",
         (langueParlee: string, moment:string) => {
             let sortie = testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0])
-            let sortieExplosed = sortie.split(os.EOL);
-            let premiereLigne = sortieExplosed[0]
+            let premiereLigne = stringFilter.PremiereLigne(sortie);
             expect(premiereLigne).toEqual(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).BuildSaluer());
         }
     )
@@ -139,8 +137,7 @@ describe("test palindrome", () => {
         "ALORS <auRevoir> de cette langue à cette période est envoyé avant tout",
         (langueParlee: string, moment:string) => {
             let sortie = testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0])
-            let sortieExplosed = sortie.split(os.EOL);
-            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
+            let derniereLigne = stringFilter.DerniereLigne(sortie)
             expect(derniereLigne).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).BuildCloture());
         }
     )
