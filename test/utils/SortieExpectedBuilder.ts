@@ -65,5 +65,9 @@ export class buildTestSortieExpected {
         return this.langue.Cloture(this.moment);
     }
 
+    public BuildSaluer () : string {
+        return this.langue.Salue(this.moment);
+    }
+
 }
 
