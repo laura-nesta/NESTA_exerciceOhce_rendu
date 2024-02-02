@@ -12,6 +12,8 @@ function main(){
     const userInput = lireConsole();
 
     const verifiePalindrome = new VerifiePalindrome();
+    verifiePalindrome.setMoment(moment);
+    verifiePalindrome.setLangue(langueSysteme);
     const sortie = verifiePalindrome.Console(userInput);
 
     console.log(sortie);

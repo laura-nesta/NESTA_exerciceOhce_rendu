@@ -1,6 +1,17 @@
 # NESTA_exerciceOhce_rendu
 Application typeScript de palyndrome
 
+## Lancer le projet 
+- Cloner le projet   
+- Lancer un `npm i`
+
+### Lancer les tests : 
+- `npm run test`
+- 
+### Lancer la console (main) :
+- `npm run main`
+
+
 ## Etape 1 
 QUAND on saisit une chaîne ALORS celle-ci est renvoyée en miroir  
   

@@ -4,7 +4,7 @@
   "description": "Application typeScript de palyndrome",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "main": "tsc && node build/src/index.js && tsc --build --clean"
   },
   "keywords": [],
