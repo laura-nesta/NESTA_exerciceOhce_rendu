@@ -14,6 +14,7 @@ import {buildTestSortieExpected} from "./utils/SortieExpectedBuilder";
 describe("test palindrome", () => {
 
     const sortieBuilder = new buildTestSortieExpected();
+    const testBuilder : buildTest = new buildTest();
     const buildLangue = (langueParlee: string): Langue => {
         const langueFrancaise = new LangueFrancaise();
         const langueAnglaise = new LangueAnglaise();
