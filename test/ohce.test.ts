@@ -7,7 +7,8 @@ import {MomentJournee} from "../src/domain/momentJournee";
 import {data,
     casesPalindromeLangue,
     casesChaineLangueMoment,
-    casesChaineLangue} from "./utils/testData"
+    casesChaineLangue,
+    chaine} from "./utils/testData"
 import {buildTest} from "./utils/VerifiePalindromeBuilder";
 import {buildTestSortieExpected} from "./utils/SortieExpectedBuilder";
 
@@ -112,11 +113,8 @@ describe("test palindrome", () => {
         "ET que la période de la journée est <période> " +
         "QUAND on saisit une chaîne" +
         "ALORS <salutation> de cette langue à cette période est envoyé avant tout",
-        (chaine: string, langueParlee: string) => {
-            let sortie = testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)
-            let sortieExplosed = sortie.split(os.EOL);
-            let derniereLigne = sortieExplosed[sortieExplosed.length-1]
-            expect(derniereLigne).toEqual(sortieBuilder.AvecMomentActuel().AvecLangue(langueParlee).BuildCloture())
+        (langueParlee: string, moment:string) => {
+            expect(testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0])).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine[0]));
         }
     )
 

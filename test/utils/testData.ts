@@ -64,5 +64,6 @@ export {
     data,
     casesPalindromeLangue,
     casesChaineLangueMoment,
-    casesChaineLangue
+    casesChaineLangue,
+    chaine
 };
