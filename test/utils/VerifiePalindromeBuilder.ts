@@ -5,36 +5,34 @@ import {LangueAnglaise} from "../../src/domain/langueAnglaise";
 import {Langue} from "../../src/domain/langue";
 
 export class buildTest {
+    private verifiePalindrome: VerifiePalindrome = new VerifiePalindrome();
     private langue: Langue = new LangueFrancaise();
     private moment: MomentJournee = MomentJournee.Inconnu;
 
-    public VerifiePalindrome() : VerifiePalindrome{
-        return new VerifiePalindrome();
-    }
     public Miroir(chaine: string) : string {
-        return this.VerifiePalindrome().Miroir(chaine);
+        return this.verifiePalindrome.Miroir(chaine);
     }
 
     public Verifie(chaine:string) : string {
-        return this.VerifiePalindrome().Verifie(chaine);
+        return this.verifiePalindrome.Verifie(chaine);
     }
 
     public Console(chaine:string) : string{
-        return this.VerifiePalindrome().Console(chaine);
+        return this.verifiePalindrome.Console(chaine);
     }
 
     public AvecLangue(langue : string) : buildTest{
-        this.VerifiePalindrome().setLangue(langue);
+        this.verifiePalindrome.setLangue(langue);
         return this;
     }
 
-    public AvecMoment(moment: MomentJournee): buildTest{
-        this.VerifiePalindrome().setMoment(moment);
+    public AvecMoment(moment: string): buildTest{
+        this.verifiePalindrome.setMoment(MomentJournee.buildMoment(moment));
         return this;
     }
 
-    public AvecMomentActuel(moment: MomentJournee) : buildTest{
-        this.VerifiePalindrome().setMoment(MomentJournee.getMomentActuel());
+    public AvecMomentActuel() : buildTest{
+        this.verifiePalindrome.setMoment(MomentJournee.getMomentActuel());
         return this;
     }
 

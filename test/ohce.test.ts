@@ -64,7 +64,7 @@ describe("test palindrome", () => {
             let miroir = new VerifiePalindrome().Miroir(chaine);
             let palindrome = buildVerifieOutput(chaine);
 
-            expect(miroir).toEqual(sortieBuilder.Miroir(chaine));
+            expect(testBuilder.Miroir(chaine)).toEqual(sortieBuilder.Miroir(chaine));
         }
     )
 
@@ -76,7 +76,7 @@ describe("test palindrome", () => {
             let miroir = new VerifiePalindrome().Verifie(chaine);
             let palindrome =  buildVerifieOutput(chaine);
 
-            expect(miroir).toEqual(sortieBuilder.Miroir(chaine));
+            expect(testBuilder.Miroir(chaine)).toEqual(sortieBuilder.Miroir(chaine));
         }
     )
 
@@ -92,7 +92,7 @@ describe("test palindrome", () => {
             verifiePalindrome.setLangue(langueParlee);
             let miroir = verifiePalindrome.Verifie(chaine);
 
-            expect(miroir).toEqual(sortieBuilder.AvecLangue(langueParlee).VerifiePalindrome(chaine));
+            expect(testBuilder.AvecLangue(langueParlee).Verifie(chaine)).toEqual(sortieBuilder.AvecLangue(langueParlee).VerifiePalindrome(chaine));
         }
     );
 
@@ -111,7 +111,7 @@ describe("test palindrome", () => {
             verifiePalindrome.setLangue(langueParlee);
             let sortie = verifiePalindrome.Console(chaine);
 
-            expect(sortie).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine));
+            expect(testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine)).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine));
         }
     )
 
@@ -126,7 +126,7 @@ describe("test palindrome", () => {
             verifiePalindrome.setLangue(langueParlee);
             let sortie = verifiePalindrome.Console(chaine);
 
-            expect(sortie).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine));
+            expect(testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)).toContain(sortieBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine));
         }
     )
 
@@ -142,7 +142,7 @@ describe("test palindrome", () => {
             verifiePalindrome.setLangue(langueParlee);
             //let sortie = verifiePalindrome.Console(chaine);
 
-            let sortie = sortieBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine)
+            let sortie = testBuilder.AvecLangue(langueParlee).AvecMoment(moment).Console(chaine);
             let sortieExplosed = sortie.split(os.EOL);
             let derniereLigne = sortieExplosed[sortieExplosed.length-1]
             expect(derniereLigne).toEqual(sortieBuilder.AvecMoment(moment).AvecLangue(langueParlee).BuildCloture())
@@ -158,7 +158,7 @@ describe("test palindrome", () => {
             let verifiePalindrome = new VerifiePalindrome();
             verifiePalindrome.setMoment(buildMomentActuel());
             verifiePalindrome.setLangue(langueParlee);
-            let sortie = verifiePalindrome.Console(chaine);
+            let sortie = testBuilder.AvecLangue(langueParlee).AvecMomentActuel().Console(chaine)
             let sortieExplosed = sortie.split(os.EOL);
             let derniereLigne = sortieExplosed[sortieExplosed.length-1]
             expect(derniereLigne).toEqual(sortieBuilder.AvecMomentActuel().AvecLangue(langueParlee).BuildCloture())
