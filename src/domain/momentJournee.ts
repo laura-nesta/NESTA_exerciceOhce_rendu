@@ -22,6 +22,10 @@ export class MomentJournee {
 
     public static getMomentActuel(): MomentJournee {
         const heureActuelle = new Date().getHours();
+        return MomentJournee.getMomentSelonHeure(heureActuelle);
+    }
+
+    public static getMomentSelonHeure(heureActuelle: number) : MomentJournee {
         if (heureActuelle < 12 && heureActuelle > 7) {
             return MomentJournee.Matin;
         } else if (heureActuelle < 17) {
